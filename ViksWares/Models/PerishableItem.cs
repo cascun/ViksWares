@@ -15,6 +15,15 @@ namespace ViksWares.Models
             // Constructor implementation
         }
 
+        // Updates the SellBy property of the item based on its specific behavior.
+        // This method is intended to be overridden by derived classes to provide
+        // custom behavior for updating the SellBy value.
+        // For most perishable items, the SellBy value decreases by 1 each day.
+        // For SaffronPowder, which does not degrade over time, this method does nothing.
+        public virtual void UpdateSellBy()
+        {
+            SellBy = SellBy - 1;
+        }
         /// This method ensures that the value of the item stays within the ra
         /// <summary>nge of 0 to 50,
         /// except for Saffron Powder.

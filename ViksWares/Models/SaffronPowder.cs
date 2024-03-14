@@ -15,6 +15,11 @@ namespace ViksWares.Models
         {
             // Constructor implementation
         }
+
+        public override void UpdateSellBy()
+        {
+            
+        }
         /// <summary>
         /// This method does not update the value of Saffron Powder, as its price never changes.
         /// After updating the value (which does nothing), the ValueValidation method is called

@@ -25,11 +25,13 @@ namespace csharp
                 ((PerishableItem)item).UpdateValue();
 
                 // Decrease the sell-by date for the item if item not SaffronPowder
-                if (!(item is SaffronPowder))
-                {
-                    item.SellBy = item.SellBy - 1;
-                }
-                
+
+                ((PerishableItem)item).UpdateSellBy();
+                //if (!(item is SaffronPowder))
+                //{
+                //    item.SellBy = item.SellBy - 1;
+                //}
+
             }
         }
 
