@@ -5,32 +5,43 @@ using System.Text;
 
 namespace ViksWares.Models
 {
+    /// <summary>
+    /// This class represents Concert Tickets, which are a type of perishable item.
+    /// </summary>
     public class ConcertTicket : PerishableItem
     {
-        public ConcertTicket() { }
+        public ConcertTicket() {
+            // Constructor implementation
+        }
 
         /// <summary>
-        /// Update the Value of the Concert Tickets dipending on how far away the concert is.
-        /// at the end we alwasys validate the value
+        /// This method overrides the UpdateValue method of the base class.
+        /// It updates the value of the concert tickets based on how far away the concert is.
+        /// - If the sell-by date is more than 10 days away, the value increases by 1 each day.
+        /// - If the sell-by date is between 6 and 10 days away, the value increases by 2 each day.
+        /// - If the sell-by date is between 1 and 5 days away, the value increases by 3 each day.
+        /// - If the sell-by date is 0 or less, the value is set to 0.
+        /// After updating the value, the ValueValidation method is called to ensure
+        /// that the value stays within the acceptable range (0 to 50).
         /// </summary>
         public override void UpdateValue()
         {
-            if(SellBy  > 10) //when sell by (consert day) is more 10 days away increas value by 1 each day
+            if(SellBy  > 10)
             {
                 Value = Value +1;
-            }else if( SellBy > 5) //when sell by (consert day) is less or equal to  10 days away but more then 5  increas value by 2 each day
+            }else if( SellBy > 5)
             {
                 Value = Value +2;
             }
-            else if (SellBy > 0) //when sell by (consert day) is less or equal to 5 days away but more then 0  increas value by 3 each day
+            else if (SellBy > 0) 
             {
                 Value = Value + 3;
             }
-            else // else this means that Sell by is 0 or less Value will go down to 0 
+            else 
             {
                 Value = 0;
             }
-
+            // Validate the value to ensure it stays within the acceptable range
             ValueValidation();
         }
     }

@@ -10,18 +10,26 @@ namespace csharp
         {
             this.Items = Items;
         }
+
         /// <summary>
-        /// The method loops through all items, casting the item to  PerishableItem, 
-        /// and then calls the UpdateValue method, which is overridden in every child item class, to update its value,
-        /// Which i's   
+        /// Updates the value of each perishable item in the inventory.
+        /// Iterates through all items, casting each one to PerishableItem to call the overridden UpdateValue method,
+        /// which updates the item's value according to its specific behavior.
+        /// Decrements the sell-by date for each item.
         /// </summary>
         public void UpdateValue()
         {
             foreach (var item in Items)
-            {
+            {                
+                // Cast each item to PerishableItem and call its UpdateValue method
                 ((PerishableItem)item).UpdateValue();
-               
-                item.SellBy = item.SellBy - 1;
+
+                // Decrease the sell-by date for the item if item not SaffronPowder
+                if (!(item is SaffronPowder))
+                {
+                    item.SellBy = item.SellBy - 1;
+                }
+                
             }
         }
 

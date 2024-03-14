@@ -8,8 +8,67 @@ namespace csharp
     {
         public static void Main(string[] args)
         {
+
+            Console.WriteLine("Welcome to  Viks Wares!");
+
+            // Display options to the user
+            Console.WriteLine("Choose an option:");
+            Console.WriteLine("1. Run Shop");
+            Console.WriteLine("2. Run Test");
+            Console.Write("Enter your choice (1 or 2): ");
+
+            // Read user input
+            string userInput = Console.ReadLine();
+            if (int.TryParse(userInput, out int choice))
+            {
+                // Call method based on user choice
+                switch (choice)
+                {
+                    case 1:
+                        RunShop();
+                        break;
+                    case 2:
+                        RunTest();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Please select 1 or 2.");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+            }
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+        }
+
+
+
+        public static void RunTest()
+        {
+            ViksWaresTest test = new ViksWaresTest();
+
+            test.AgedParmigiano_UpdateValue_Value_Six();
+            test.ConcertTicket_UpdateValue_Value_Eight();
+            test.ConcertTicket_UpdateValue_Value_Seven();
+            test.ConcertTicket_UpdateValue_Value_Six();
+            test.ConcertTicket_UpdateValue_Value_Zero();
+            test.PerishableItem_UpdateValue_Value_Four();
+            test.Refrigerated_UpdateValue_Value_Eight();
+            test.SaffronPowder_UpdateValue_Value_Eighty();
+            test.Perishable_Item_UpdateValue_Should_Decrease_SellBy();
+            test.Perishable_Item_UpdateValue_Should_Handle_Negative_SellBy();
+        }
+
+        public static void RunShop()
+        {
+
             Console.WriteLine("Welcome To our shop!");
 
+
+            // List of items in the shop
             IList<Item> Items = new List<Item>{
                 new PerishableItem {Name = "Shoe Laces", SellBy = 10, Value = 20},
                 new AgedParmigiano {Name = "Aged Parmigiano", SellBy = 2, Value = 0},
@@ -19,7 +78,7 @@ namespace csharp
                 new ConcertTicket
                 {
                     Name = "Concert tickets to Talkins Festival",
-                    SellBy = 50,
+                    SellBy = 15,
                     Value = 20
                 },
                 new ConcertTicket
@@ -34,26 +93,34 @@ namespace csharp
                     SellBy = 5,
                     Value = 49
                 },
-                // this Refrigerated item does not work properly yet
                 new Refrigerated {Name = "Refrigerated milk", SellBy = 3, Value = 6}
             };
-
+            // Create a new instance of ViksWares with the list of items
             var app = new ViksWares(Items);
 
 
+            // Loop for 30 days to simulate item value updates
             for (var i = 0; i < 31; i++)
             {
+
+                // Display day number
                 Console.WriteLine("-------- day " + i + " --------");
+
+                // Display header for item attributes
                 Console.WriteLine("name, sellIn, quality");
+
+                // Display attributes of each item
                 for (var j = 0; j < Items.Count; j++)
                 {
                     System.Console.WriteLine(Items[j]);
                 }
+
                 Console.WriteLine("");
+                // Update the value of items for the next day
                 app.UpdateValue();
             }
 
-            Console.ReadKey();
+
         }
     }
 }
