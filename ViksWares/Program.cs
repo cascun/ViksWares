@@ -28,7 +28,7 @@ namespace csharp
                         RunShop();
                         break;
                     case 2:
-                        RunTest();
+                       // RunTest();
                         break;
                     default:
                         Console.WriteLine("Invalid choice. Please select 1 or 2.");
@@ -46,23 +46,7 @@ namespace csharp
 
 
 
-        public static void RunTest()
-        {
-            ViksWaresTest test = new ViksWaresTest();
-
-            test.AgedParmigiano_UpdateValue_Value_Six();
-            test.ConcertTicket_UpdateValue_Value_Eight();
-            test.ConcertTicket_UpdateValue_Value_Seven();
-            test.ConcertTicket_UpdateValue_Value_Six();
-            test.ConcertTicket_UpdateValue_Value_Zero();
-            test.PerishableItem_UpdateValue_Value_Four();
-            test.Refrigerated_UpdateValue_Value_Eight();
-            test.SaffronPowder_UpdateValue_Value_Eighty();
-            test.Perishable_Item_UpdateValue_Should_Decrease_SellBy();
-            test.Perishable_Item_UpdateValue_Should_Handle_Negative_SellBy();
-        }
-
-        public static void RunShop()
+        private static void RunShop()
         {
 
             Console.WriteLine("Welcome To our shop!");
